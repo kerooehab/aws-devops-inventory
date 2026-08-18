@@ -10,7 +10,14 @@ services:
       DATABASE_URL: postgresql://inventory_app:Test1234@postgres:5432/inventory
     depends_on:
       - postgres
-
+  frontend:
+    build:
+      context: ./frontend
+    container_name: inventory-frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
   postgres:
     image: postgres:15-alpine
     container_name: inventory-postgres
